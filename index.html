@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <input />
-    <button>Add</button>
-    <ul></ul>
+    <form onsubmit="return false">
+      <input id="todo-text" spellcheck="false" />
+      <button id="btn">Add</button>
+      <button id="rmv">Remove Done Todos</button>
+    </form>
+    <ul id="list"></ul>
     <script src="script.js"></script>
   </body>
 </html>
