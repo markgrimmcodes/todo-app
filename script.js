@@ -3,9 +3,21 @@ const btnRmv = document.querySelector("#rmv");
 let todos = [];
 const todoList = document.querySelector("#list");
 
+function localStorageAdd() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getStorageTodos() {
+  let storageTodos = localStorage.getItem("todos");
+  todos = JSON.parse(storageTodos);
+}
+
+getStorageTodos();
+
 btnAdd.addEventListener("click", createTodoElement);
 btnRmv.addEventListener("click", (e) => {
   todos = todos.filter((todo) => !todo.done);
+  localStorageAdd();
   renderTodos();
 });
 
@@ -29,6 +41,7 @@ function createTodoElement() {
     };
 
     todos.push(todo);
+    localStorageAdd();
     todoTextInput.value = "";
     renderTodos();
   }
@@ -48,7 +61,8 @@ function renderTodos() {
 
     checkbox.addEventListener("change", () => {
       todo.done = !todo.done;
-      console.log(todo.done);
+
+      //console.log(todo.done);
     });
 
     todoDescription.setAttribute("for", checkbox.id);
